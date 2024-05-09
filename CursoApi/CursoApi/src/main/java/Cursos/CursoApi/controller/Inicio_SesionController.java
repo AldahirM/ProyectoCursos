@@ -18,7 +18,7 @@ public class Inicio_SesionController {
 
     @GetMapping
     public ResponseEntity<Iterable<Inicio_Sesion>> getInicioSesiones() {
-        return ResponseEntity.ok(inicioSesionRepository.findAll());
+        return ResponseEntity.ok(inicioSesionRepository.findAll());////fdsfd
     }
 
     @GetMapping("/{id_Inicio_Sesion}")
