@@ -14,7 +14,9 @@ import java.util.Optional;
 public class CursoController {
 
     
-
+    public String holaCande(){
+        return "Hola Cande";
+    }
     
 
 
