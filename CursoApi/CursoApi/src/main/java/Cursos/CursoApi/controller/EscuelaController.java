@@ -21,9 +21,9 @@ public class EscuelaController {
         return ResponseEntity.ok(escuelaRepository.findAll());
     }
 
-    @GetMapping("/{CCT}")
-    public ResponseEntity<Escuela> getEscuela(@PathVariable String CCT) {
-        Optional<Escuela> escuelaOptional = escuelaRepository.findById(CCT);
+    @GetMapping("/{idEscuela}")
+    public ResponseEntity<Escuela> getEscuela(@PathVariable String idEscuela) {
+        Optional<Escuela> escuelaOptional = escuelaRepository.findById(idEscuela);
         if (escuelaOptional.isPresent()) {
             return ResponseEntity.ok(escuelaOptional.get());
         } else {
@@ -34,13 +34,13 @@ public class EscuelaController {
     @PostMapping
     public ResponseEntity<Void> create(@RequestBody Escuela newEscuela, UriComponentsBuilder ucb) {
         Escuela savedEscuela = escuelaRepository.save(newEscuela);
-        URI uri = ucb.path("/escuela/{CCT}").buildAndExpand(savedEscuela.getIdEscuela()).toUri();
+        URI uri = ucb.path("/escuela/{idEscuela}").buildAndExpand(savedEscuela.getIdEscuela()).toUri();
         return ResponseEntity.created(uri).build();
     }
 
-    @PutMapping("/{CCT}")
-    public ResponseEntity<Void> update(@PathVariable String CCT, @RequestBody Escuela escuelaAct) {
-        Escuela escuelaAnt = escuelaRepository.findById(CCT).get();
+    @PutMapping("/{idEscuela}")
+    public ResponseEntity<Void> update(@PathVariable String idEscuela, @RequestBody Escuela escuelaAct) {
+        Escuela escuelaAnt = escuelaRepository.findById(idEscuela).get();
         if (escuelaAnt != null) {
             escuelaAct.setIdEscuela(escuelaAnt.getIdEscuela());
             escuelaRepository.save(escuelaAct);
@@ -49,18 +49,18 @@ public class EscuelaController {
         return ResponseEntity.notFound().build();
     }
 
-    @DeleteMapping("/{CCT}")
-    public ResponseEntity<Void> delete(@PathVariable String CCT) {
-        if (escuelaRepository.findById(CCT).get() != null) {
-            escuelaRepository.deleteById(CCT);
+    @DeleteMapping("/{idEscuela}")
+    public ResponseEntity<Void> delete(@PathVariable String idEscuela) {
+        if (escuelaRepository.findById(idEscuela).get() != null) {
+            escuelaRepository.deleteById(idEscuela);
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.notFound().build();
     }
 
-    @GetMapping("/{CCT}/cursos")
-    public ResponseEntity<Iterable<Curso>> getCursos(@PathVariable String CCT) {
-        Optional<Escuela> escuelaOptional = escuelaRepository.findById(CCT);
+    @GetMapping("/{idEscuela}/cursos")
+    public ResponseEntity<Iterable<Curso>> getCursos(@PathVariable String idEscuela) {
+        Optional<Escuela> escuelaOptional = escuelaRepository.findById(idEscuela);
         if (!(escuelaOptional.isPresent())) {
             return ResponseEntity.notFound().build();
         } 
