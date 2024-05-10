@@ -16,7 +16,7 @@ public class Docente {
     private Usuario usuario; 
 
     @OneToOne
-    @JoinColumn(name = "CCT")
+    @JoinColumn(name = "id_Escuela")
     private Escuela escuela;
 
     @OneToMany (mappedBy = "docente", cascade = CascadeType.ALL)
@@ -58,8 +58,8 @@ public class Docente {
         this.usuario = id_Usuario;
     }
 
-    public void setCCTEscuela(Escuela CCTEscuela) {
-        this.escuela = CCTEscuela;
+    public void setEscuela(Escuela escuela) {
+        this.escuela = escuela;
     }
 
     public void setTelefono(String telefono) {

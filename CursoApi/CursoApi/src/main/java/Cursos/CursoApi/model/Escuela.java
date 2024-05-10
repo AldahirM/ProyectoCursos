@@ -8,8 +8,8 @@ import jakarta.persistence.*;
 @Entity
 public class Escuela {
     @Id
-    @Column(name = "CCT", nullable = false, length = 10)
-    private String CCT;
+    @Column(name = "id_Escuela", nullable = false, length = 10)
+    private String id_Escuela;
 
     @OneToOne(mappedBy = "escuela", cascade = CascadeType.ALL)
     Docente docente;
@@ -40,11 +40,11 @@ public class Escuela {
     }
 
     public String getIdEscuela() {
-        return CCT;
+        return id_Escuela   ;
     }
 
-    public String getCCT() {
-        return CCT;
+    public String getId_Escuela() {
+        return id_Escuela;
     }
 
     public Docente getDocente() {
@@ -71,16 +71,16 @@ public class Escuela {
         return correo;
     }
 
-    public void setIdEscuela(String CCT) {
-        this.CCT = CCT;
+    public void setIdEscuela(String id_Escuela) {
+        this.id_Escuela = id_Escuela;
     }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    public void setCCT(String cCT) {
-        CCT = cCT;
+    public void setId_Escuela(String id_Escuela) {
+        this.id_Escuela = id_Escuela;
     }
 
     public void setDocente(Docente docente) {
@@ -106,7 +106,7 @@ public class Escuela {
     @Override
     public String toString() {
         return "Escuela{" +
-                "CCT=" + CCT +
+                "CCT=" + id_Escuela+
                 ", nombre='" + nombre + '\'' +
                 ", direccion='" + direccion + '\'' +
                 ", telefono='" + telefono + '\'' +
