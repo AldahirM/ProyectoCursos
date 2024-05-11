@@ -45,13 +45,13 @@ public class CursoController {
     //Crear un curso
     @PostMapping
     public ResponseEntity<Void> create(@RequestBody Curso curso, UriComponentsBuilder ucb){
-        Optional<Docente> docenteOptional = docenteRepository.findById(curso.getDocente().getId_Docente());
+        /*Optional<Docente> docenteOptional = docenteRepository.findById(curso.getDocente().getId_Docente());
 
         if (!docenteOptional.isPresent()){
             return ResponseEntity.unprocessableEntity().build();
         }
         curso.setDocente(docenteOptional.get());
-
+        */
         Curso savedCurso = cursoRepository.save(curso);
         URI uri = ucb
                 .path("curso/{idCurso}")
