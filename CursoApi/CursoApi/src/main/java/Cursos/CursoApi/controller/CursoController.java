@@ -92,6 +92,18 @@ public class CursoController {
     }
 
 
+    @GetMapping("/escuela/{idCurso}")
+    public ResponseEntity<Escuela> findByIdEscuela(@PathVariable Integer idCurso) {
+        Optional<Curso> cursoOptional = cursoRepository.findById(idCurso);
+        if (!cursoOptional.isPresent()) {
+            return ResponseEntity.notFound().build();
+        }
+        Curso curso = cursoOptional.get(); // Obtener el curso de la opción opcional
+        Escuela escuela = curso.getEscuela(); // Acceder a la escuela asociada al curso
+        return ResponseEntity.ok(escuela);
+    }
+
+
 
 }
 

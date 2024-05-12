@@ -5,6 +5,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.*;
+
 @Entity
 public class Curso {
     @Id
@@ -16,7 +17,7 @@ public class Curso {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Escuela escuela;
 
-    @OneToOne (mappedBy = "curso", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "curso", cascade = CascadeType.ALL)
     Certificado certificado;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -66,6 +67,10 @@ public class Curso {
         return imagen;
     }
 
+    public Escuela getEscuela() {
+        return escuela;
+    }
+
     public void setIdCurso(Integer idCurso) {
         this.idCurso = idCurso;
     }
@@ -84,6 +89,10 @@ public class Curso {
 
     public void setImagen(String imagen) {
         this.imagen = imagen;
+    }
+
+    public void setEscuela(Escuela escuela) {
+        this.escuela = escuela;
     }
 
     @Override
